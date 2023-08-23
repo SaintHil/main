@@ -25,3 +25,15 @@ Feature: Navigate to menu with parameters
     Then The welcome message contains "BootDeveloper"
     And The user navigates to "My Account" menu
     Then The user should be able to see header as "Dashboard"
+
+
+  Scenario Outline: User navigates to Different menu
+    When The user logs in using "<userType>" and "<password>"
+    Then The welcome message contains "<name>"
+    And The user navigates to "<menu>" menu
+    Then The user should be able to see header as "<header>"
+    Examples:
+      | userType                 | password   | name          | menu       | header                                  |
+      | teacher@bootflow.academy | Test12345! | Teacher       | Developers | Filter Profiles by Skill or by Location |
+      | sdetb2@bootflow.com      | Test1234   | SDETB2        | All Posts  | Posts                                   |
+      | bootdev@bootflow.academy | Dev123     | BootDeveloper | My Account | Dashboard                               |

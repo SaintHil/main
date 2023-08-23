@@ -9,7 +9,7 @@ Feature: Dashboard Page Menu
       | Developers |
       | All Posts  |
       | My Account |
-  @wip
+
   Scenario: Log in as a specific user
     Given  The user is on the login page
     When The user logs in using following credentials
