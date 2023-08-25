@@ -20,4 +20,4 @@ Feature: Negative Login Test
       | teacher                 | Test12345! | Lütfen e-posta adresine bir "@" işareti ekleyin. "teacher" adresinde "@" eksik.    |
       | teacher@                | Test12345! | Lütfen "@" işaretinden sonra gelen kısmı ekleyin. "teacher@", tam bir adres değil. |
       | teacher@bootflow        | Test12345! | Please include a valid email!                                                      |
-      | teache@bootflow.academy | Test12345! | Invalid Credentials!                                                               |
+      | teache@bootflow.academy | Test12345! | Invalid Credentials!|

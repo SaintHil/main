@@ -4,9 +4,11 @@ import com.devbook.pages.AutoPage;
 import com.devbook.utilities.BrowserUtils;
 import com.devbook.utilities.Driver;
 import com.github.javafaker.Faker;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.Keys;
 
 public class AutoExercize_StepDefs {
@@ -118,4 +120,29 @@ public class AutoExercize_StepDefs {
         BrowserUtils.waitFor(2);
     }
 
+    @Then("Verify Login to your account is visible")
+    public void verify_login_to_your_account_is_visible() {
+        Assert.assertTrue(autopage.loginToYourAccountText.isDisplayed());
+        Assert.assertTrue(autopage.loginToYourAccountText.getText().contains("to your account"));
+        Assert.assertEquals(autopage.loginToYourAccountText.getText(),"Login to your account");
+    }
+    @When("Enter incorrect email address and password")
+    public void enter_incorrect_email_address_and_password() {
+        autopage.loginEmailInbox.sendKeys(faker.internet().emailAddress());
+        BrowserUtils.waitFor(2);
+        autopage.loginPasswordInbox.sendKeys(faker.internet().password());
+
+       }
+    @Then("Verify error Your email or password is incorrect! is visible")
+    public void verify_error_your_email_or_password_is_incorrect_is_visible() {
+      //  Assert.assertTrue(autopage.invalidText.getText().contains("password is incorrect!']"));
+        Assert.assertTrue(autopage.invalidText.isDisplayed());
+
+    }
+
+    @And("Click to Login button")
+    public void clickToLoginButton() {
+        autopage.loginAccountBtn.click();
+
+    }
 }

@@ -81,6 +81,23 @@ public class AutoPage extends BasePage{
     @FindBy(xpath = "//b[text()='Account Created!']")
     public WebElement accountCreatedText;
 
+    @FindBy(xpath="//h2[.='Login to your account']")
+    public WebElement loginToYourAccountText;
+
+    @FindBy(xpath = "//input[@data-qa='login-email']")
+    public WebElement loginEmailInbox;
+
+    @FindBy(xpath = "//input[@data-qa='login-password']")
+    public WebElement loginPasswordInbox;
+
+    @FindBy(xpath = "//*[@data-qa='login-button']")
+    public WebElement loginAccountBtn;
+
+    @FindBy(xpath = "//p[text()='Your email or password is incorrect!']")
+    public WebElement invalidText;
+
+
+
     public void verifyHomePageLogo(){
         Assert.assertTrue(homePageLogo.isDisplayed());
     }
