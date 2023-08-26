@@ -16,7 +16,7 @@ And Enters First name, Last name, Company, Address, Address2, Country, State, Ci
 And Click create Account button
 Then Verify that ACCOUNT CREATED! is visible
 
-  #negative test web page ---> 'http://automationexercise.com/'
+#negative test web page ---> 'http://automationexercise.com/'
 #Login User with incorrect email and password
 #Navigate to url
 #Verify that home page is visible successfully
