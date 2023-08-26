@@ -143,6 +143,23 @@ public class AutoExercize_StepDefs {
     @And("Click to Login button")
     public void clickToLoginButton() {
         autopage.loginAccountBtn.click();
+    }
+
+    @Then("Verify {string} is visible")
+    public void verify_is_visible(String accountTextMessage) {
+        Assert.assertEquals(accountTextMessage,autopage.loginToYourAccountText.getText());
+
+    }
+    @When("Enter incorrect {string} address and {string}\"")
+    public void enter_incorrect_address_and(String email, String password) {
+        autopage.loginEmailInbox.sendKeys(email);
+        BrowserUtils.waitFor(2);
+        autopage.loginPasswordInbox.sendKeys(password);
+
+    }
+    @Then("Verify error {string} is visible")
+    public void verify_error_is_visible(String errorMessage) {
+        Assert.assertEquals(errorMessage, autopage.invalidText.getText());
 
     }
 }
