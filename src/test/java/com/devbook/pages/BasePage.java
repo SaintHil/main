@@ -2,12 +2,14 @@ package com.devbook.pages;
 
 
 import com.devbook.utilities.Driver;
+import com.devbook.utilities.ExcelUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
+import java.util.Map;
 
 public abstract class BasePage {
     public BasePage() {
@@ -33,5 +35,10 @@ public abstract class BasePage {
 
     public String getTextHeader(String headerText){
         return Driver.get().findElement(By.xpath("//*[text()='"+headerText+"']")).getText();
+    }
+    public List<Map<String, String>> getDataList(String sheetName){
+        ExcelUtil excelUtil=new ExcelUtil("src/test/resources/Batch2DevBook.xlsx",sheetName);
+        List<Map<String, String>> dataList = excelUtil.getDataList();
+        return dataList;
     }
 }

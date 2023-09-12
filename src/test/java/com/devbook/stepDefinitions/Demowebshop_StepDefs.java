@@ -1,14 +1,12 @@
 package com.devbook.stepDefinitions;
 
 import com.devbook.pages.DemoPage;
-import com.devbook.pages.ProtonPage;
 import com.devbook.utilities.BrowserUtils;
 import com.devbook.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.WebElement;
 
 public class Demowebshop_StepDefs {
 

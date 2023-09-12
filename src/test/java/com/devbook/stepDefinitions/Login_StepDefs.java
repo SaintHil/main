@@ -2,18 +2,24 @@ package com.devbook.stepDefinitions;
 
 import com.devbook.pages.DashboardPage;
 import com.devbook.pages.LoginPage;
-import com.devbook.utilities.BrowserUtils;
 import com.devbook.utilities.ConfigurationReader;
 import com.devbook.utilities.Driver;
+import com.devbook.utilities.ExcelUtil;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
+import java.util.List;
+import java.util.Map;
+
 public class Login_StepDefs {
     LoginPage loginPage = new LoginPage();
     DashboardPage dashboardPage = new DashboardPage();
+
+    ExcelUtil excelUtil = new ExcelUtil("src/test/resources/Batch2DevBook.xlsx","Test Data");
+    List<Map<String, String>> dataList = excelUtil.getDataList();
 
     @Given("The user is on the login page")
     public void the_user_is_on_the_login_page() {
@@ -76,5 +82,28 @@ public class Login_StepDefs {
 //        Assert.assertEquals(expectedMessage,validationMessage);
         String actualMessage= loginPage.getDisappearingWarningMessage(expectedMessage);
         Assert.assertEquals(expectedMessage,actualMessage);
+    }
+
+    @When("The user enters {string} and row number {int}")
+    public void the_user_enters_and_row_number(String sheetname, Integer rowNumber) {
+//        ExcelUtil excelUtil=new ExcelUtil("src/test/resources/Batch2DevBook.xlsx",sheetname);
+//        List<Map<String, String>> dataList = excelUtil.getDataList();
+        //loginPage.login(dataList.get(0).get("Username"),dataList.get(0).get("Password"));
+        //  loginPage.login(dataList.get(rowNumber).get("Username"),dataList.get(rowNumber).get("Password"));
+        loginPage.login(loginPage.getDataList(sheetname).get(rowNumber).get("Username"),
+                loginPage.getDataList(sheetname).get(rowNumber).get("Password"));
+    }
+    @Then("The welcome message contains in excel {string} {int}")
+    public void the_welcome_message_contains_in_excel(String sheetName, Integer rowNumberForName) {
+        String actualMessage = dashboardPage.welcomeMessage.getText();
+        // Assert.assertTrue(actualMessage.contains(dataList.get(rowNumberForName).get("Name")));
+        Assert.assertTrue(actualMessage.contains(loginPage.getDataList(sheetName).get(rowNumberForName).get("Name")));
+    }
+    @Then("The user verify that company name is {int} in the {string}")
+    public void the_user_verify_that_company_name_is_in_the(Integer rowNumberForCompany, String sheetName) {
+        String actualCompany=dashboardPage.getCompany(loginPage.getDataList(sheetName)
+                .get(rowNumberForCompany).get("Company"));
+        Assert.assertEquals(loginPage.getDataList(sheetName).get(rowNumberForCompany).get("Company"),actualCompany);
+
     }
 }
